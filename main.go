@@ -15,7 +15,11 @@ type Data struct {
 
 func main() {
 
-	jsonBody, err := ioutil.ReadFile("inputs/sample.json")
+	inputDir := "inputs/"
+	inputFile := "sample.json"
+	inputPath := inputDir + inputFile
+
+	jsonBody, err := ioutil.ReadFile(inputPath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -25,18 +29,18 @@ func main() {
 		log.Fatal(err)
 	}
 
-	templateDir := "templates"
+	templateDir := "templates/"
 	templateFile := "hello.tmpl"
-	templatePath := templateDir + "/" + templateFile
+	templatePath := templateDir + templateFile
 
 	t, err := template.New(templateFile).ParseFiles(templatePath)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	outputDir := "outputs/hoge"
+	outputDir := "outputs/hoge/"
 	outputFile := "hoge.go"
-	outputPath := outputDir + "/" + outputFile
+	outputPath := outputDir + outputFile
 	if _, err := os.Stat(outputDir); os.IsNotExist(err) {
 		err := os.Mkdir(outputDir, 0777)
 		if err != nil {
