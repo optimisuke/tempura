@@ -1,0 +1,6 @@
+{
+    "DefinitionRepository": "github.com/hoge",
+    "DefinitionServiceserver": "hogeServiceServer",
+    "DefinitionRPC": "rpcName",
+    "UsecaseFunction": "funcName"
+}

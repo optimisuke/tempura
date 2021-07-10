@@ -4,7 +4,7 @@ import (
 	"context"
 
 	acalldi "github.com/acall-inc/acall-di"
-	definition "github.com/hoge"
+	definition "{{.DefinitionRepository}}"
 )
 
 type (
@@ -13,16 +13,16 @@ type (
 )
 
 // NewServer はコンストラクタです
-func NewServer() definition.hogeServiceServer {
+func NewServer() definition.{{.DefinitionServiceserver}} {
 	return &server{}
 }
 
-func (t *server) rpcName(context context.Context, req *definition.rpcNameRequest) (*definition.rpcNameResponse, error) {
+func (t *server) {{.DefinitionRPC}}(context context.Context, req *definition.{{.DefinitionRPC}}Request) (*definition.{{.DefinitionRPC}}Response, error) {
 	container := context.Value(shared.ContainerContextKey).(acalldi.Container)
-	res := definition.rpcNameResponse{}
+	res := definition.{{.DefinitionRPC}}Response{}
 
 	if err := container.Invoke(func(usecase Usecase) error {
-		ures, err := usecase.funcName(&funcNameRequest{
+		ures, err := usecase.{{.UsecaseFunction}}(&{{.UsecaseFunction}}Request{
             // TODO
 		})
         if err != nil {

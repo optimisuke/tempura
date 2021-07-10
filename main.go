@@ -8,15 +8,21 @@ import (
 	"text/template"
 )
 
+// type Data struct {
+// 	Function string `json:"function"`
+// 	Request  string `json:"request"`
+// }
 type Data struct {
-	Function string `json:"function"`
-	Request  string `json:"request"`
+	DefinitionRepository    string `json:"DefinitionRepository"`
+	DefinitionServiceserver string `json:"DefinitionServiceserver"`
+	DefinitionRPC           string `json:"DefinitionRPC"`
+	UsecaseFunction         string `json:"UsecaseFunction"`
 }
 
 func main() {
 
 	inputDir := "inputs/"
-	inputFile := "sample.json"
+	inputFile := "sample_server.json"
 	inputPath := inputDir + inputFile
 
 	jsonBody, err := ioutil.ReadFile(inputPath)
@@ -30,7 +36,7 @@ func main() {
 	}
 
 	templateDir := "templates/"
-	templateFile := "hello.tmpl"
+	templateFile := "server.tmpl"
 	templatePath := templateDir + templateFile
 
 	t, err := template.New(templateFile).ParseFiles(templatePath)
